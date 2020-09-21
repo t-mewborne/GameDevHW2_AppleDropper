@@ -13,7 +13,9 @@ public class AppleBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (GameManager.instance.GameEnd()) {
+            Destroy(this.gameObject);
+        }
     }
 
 
@@ -27,7 +29,6 @@ public class AppleBehavior : MonoBehaviour
         if ("OutOfBounds".Equals(collision.gameObject.tag))
         {
             Destroy(this.gameObject);
-            
         }
     }
 }

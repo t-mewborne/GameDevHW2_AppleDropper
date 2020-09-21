@@ -7,26 +7,24 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     private GameManager() { }
-
     private int score = 0;
+    private int highscore;
     private int baskets = 3;
     public TMPro.TextMeshProUGUI scoreText;
-
     public GameObject basket;
     private float startX = -7f;
     private float startY = -3.3f;
     private float dy = 0.7f;
-    private float minX = -7f;
-    private float maxX = 7f;
     [SerializeField] private List<GameObject> basketList;
+    private bool end = false;
 
     void Awake() {
         if (instance) Destroy(gameObject);
         else instance = this;
     }
-    
-    void Start()
-    {
+
+    void Start() {
+        highscore = PlayerPrefs.GetInt("highscore", 0);
         score = 0;
         baskets = 0;
         basketList = new List<GameObject>();
@@ -37,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (baskets==0) {
+        if (baskets<=0) {
             GameOver();
         } else {
             scoreText.text = "Score: " + score;
@@ -45,16 +43,24 @@ public class GameManager : MonoBehaviour
     }
 
     private void GameOver(){
-        scoreText.text = "";
-        SceneManager.LoadScene("GameOver",LoadSceneMode.Additive);
+        if (!end) {
+            end = true;
+            scoreText.text = "";
+            if (score > highscore) PlayerPrefs.SetInt("highscore", score);
+            SceneManager.LoadScene("GameOver",LoadSceneMode.Additive);
+            Time.timeScale = 0;
+        }
     }
 
     public void Restart() {
         SceneManager.UnloadSceneAsync("GameOver");
+        highscore = PlayerPrefs.GetInt("highscore", 0);
         score = 0;
+        end = false;
         AddBasket();
         AddBasket();
         AddBasket();
+        Time.timeScale = 1;
     }
 
     public int GetScore() {
@@ -71,6 +77,10 @@ public class GameManager : MonoBehaviour
             Destroy(basketList[baskets]);
             basketList.RemoveAt(baskets);
         }
+    }
+
+    public bool GameEnd() {
+        return end;
     }
 
     private void AddBasket(){

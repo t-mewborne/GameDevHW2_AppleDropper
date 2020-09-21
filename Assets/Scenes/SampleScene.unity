@@ -446,7 +446,7 @@ GameObject:
   - component: {fileID: 293824896}
   m_Layer: 0
   m_Name: Right Bound
-  m_TagString: Untagged
+  m_TagString: OutOfBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -503,7 +503,7 @@ GameObject:
   - component: {fileID: 348487859}
   m_Layer: 0
   m_Name: Left Bound
-  m_TagString: Untagged
+  m_TagString: OutOfBounds
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -891,6 +891,7 @@ GameObject:
   - component: {fileID: 2031520996}
   - component: {fileID: 2031520997}
   - component: {fileID: 2031520998}
+  - component: {fileID: 2031520999}
   m_Layer: 9
   m_Name: Tree
   m_TagString: Untagged
@@ -976,6 +977,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontalSpeed: 5
+  appleSpawnRate: 5
+  appleSpawnDelay: 5
+  minAppleSpawnDelay: 0.01
+  appleSpawnAcceleration: 0.001
+  apple: {fileID: 0}
 --- !u!61 &2031520997
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1023,6 +1029,24 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2031520999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031520993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5a0a82118414123b1464f2fba054d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalSpeed: 3
+  appleSpawnRate: 0.5
+  appleSpawnDelay: 0.7
+  minAppleSpawnDelay: 0.03
+  appleSpawnAcceleration: 0.001
+  apple: {fileID: 8100892156466380278, guid: 2f71ed6b879e74bd3b237f7e0d77f5b5, type: 3}
 --- !u!1001 &2265141909037851241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1168,11 +1192,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8100892156466380170, guid: 2f71ed6b879e74bd3b237f7e0d77f5b5,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 8100892156466380276, guid: 2f71ed6b879e74bd3b237f7e0d77f5b5,
         type: 3}
       propertyPath: m_LocalPosition.x
