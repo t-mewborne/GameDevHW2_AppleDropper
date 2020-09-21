@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Apple
+  - Basket
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
@@ -13,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Background
+  - Interactables
   - 
   - 
   - 
@@ -40,4 +43,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Interactable
+    uniqueID: 1046589697
+    locked: 0
+  - name: Interactable B
+    uniqueID: 2403711419
+    locked: 0
+  - name: Interactable C
+    uniqueID: 706438797
+    locked: 0
+  - name: UI
+    uniqueID: 2268273839
     locked: 0
